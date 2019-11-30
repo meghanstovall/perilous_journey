@@ -22,6 +22,31 @@ class NodeTest < Minitest::Test
     list = LinkedList.new
     node = Node.new("West")
 
-    assert_equal node, list.append("West")
+    assert_instance_of Node, list.append("West")
   end
+
+  def test_next_node_is_nil
+    list = LinkedList.new
+    node = Node.new("West")
+    list.append("West")
+
+    assert_equal nil, list.head.next_node
+  end
+
+  def test_list_count_is_one
+    list = LinkedList.new
+    node = Node.new("West")
+    list.append("West")
+
+    assert_equal 1, list.count
+  end
+
+  def test_the_list_can_print_nodes_value
+    list = LinkedList.new
+    node = Node.new("West")
+    list.append("West")
+
+    assert_equal "The West family", list.head.to_string
+  end
+
 end

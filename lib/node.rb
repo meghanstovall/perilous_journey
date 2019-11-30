@@ -7,4 +7,8 @@ class Node
     @next_node = nil
   end
 
+  def to_string
+    "The #{surname} family"
+  end
+
 end

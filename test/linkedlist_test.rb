@@ -22,13 +22,21 @@ class NodeTest < Minitest::Test
     list = LinkedList.new
     node = Node.new("West")
 
-    assert_instance_of Node, list.append("West")
+    assert_instance_of Node, list.append(node)
+  end
+
+  def test_head_is_a_node
+    list = LinkedList.new
+    node = Node.new("West")
+    list.append(node)
+
+    assert_instance_of Node, list.head
   end
 
   def test_next_node_is_nil
     list = LinkedList.new
     node = Node.new("West")
-    list.append("West")
+    list.append(node)
 
     assert_equal nil, list.head.next_node
   end
@@ -36,7 +44,7 @@ class NodeTest < Minitest::Test
   def test_list_count_is_one
     list = LinkedList.new
     node = Node.new("West")
-    list.append("West")
+    list.append(node)
 
     assert_equal 1, list.count
   end
@@ -44,9 +52,29 @@ class NodeTest < Minitest::Test
   def test_the_list_can_print_nodes_value
     list = LinkedList.new
     node = Node.new("West")
-    list.append("West")
+    list.append(node)
 
-    assert_equal "The West family", list.head.to_string
+    assert_equal "The West family", list.to_string
+  end
+
+  def test_can_add_more_than_one_node
+    list = LinkedList.new
+    node = Node.new("West")
+    node1 = Node.new("Hardy")
+    list.append(node)
+    list.append(node1)
+
+    assert_instance_of Node, list.head.next_node
+  end
+
+  def test_count_updates
+    list = LinkedList.new
+    node = Node.new("West")
+    node1 = Node.new("Hardy")
+    list.append(node)
+    list.append(node1)
+
+    assert_equal 2, list.count
   end
 
 end
